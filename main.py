@@ -46,4 +46,3 @@ ax2.imshow(np.ma.masked_where(binary_clustered_img == 0, binary_clustered_img), 
 ax2.set_title('Binary clustered picture')
 
 plt.show()
-# new

@@ -12,7 +12,7 @@ def center(image):
     col = col / np.sum(col)
     mean_col = float(np.sum(col * range(len(col))))
 
-    return round(mean_row)+1, round(mean_col)+1
+    return round(mean_row) + 1, round(mean_col) + 1
 
 
 def center_box(row_center, col_center, image):
@@ -94,8 +94,8 @@ def standard_format(image):
     col_nbr, row_nbr = standard_image.size
     if col_nbr > row_nbr:
         add_col = int(col_nbr / 3)
-        new_size = col_nbr + 2*add_col
-        add_row = int((new_size - row_nbr)/2)
+        new_size = col_nbr + 2 * add_col
+        add_row = int((new_size - row_nbr) / 2)
 
     else:
         add_row = int(row_nbr / 3)
@@ -103,9 +103,9 @@ def standard_format(image):
         add_col = int((new_size - col_nbr) / 2)
 
     standard_image = ImageOps.expand(standard_image, border=(
-    add_col, add_row, add_col, add_row), fill=0)
+        add_col, add_row, add_col, add_row), fill=0)
 
-    #resize to 128x128
+    # resize to 128x128
     standard_image = standard_image.resize((128, 128))
 
     # return

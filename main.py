@@ -48,3 +48,4 @@ ax2.set_title('Binary clustered picture')
 plt.show()
 #nnrfio
 #je suis las
+#salut les gares

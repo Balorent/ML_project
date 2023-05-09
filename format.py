@@ -7,9 +7,11 @@ def center(image):
     row = np.sum(image, axis=1)
     row = row / np.sum(row)
     mean_row = float(np.sum(row * range(len(row))))
+
     col = np.sum(image, axis=0)
     col = col / np.sum(col)
     mean_col = float(np.sum(col * range(len(col))))
+
     return round(mean_row)+1, round(mean_col)+1
 
 

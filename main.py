@@ -7,7 +7,7 @@ import copy
 import emnist
 import format
 
-img_name = 'images/four.jpeg'
+img_name = 'images/three.jpeg'
 
 # The original image
 original_img = Image.open(img_name).convert('L')

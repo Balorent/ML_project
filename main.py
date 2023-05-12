@@ -9,10 +9,11 @@ import Model
 from tensorflow import keras
 import os.path
 
-img_name = 'images/TheTest.jpg'
+img_name = 'images/multiple.jpg'
 model_path = 'my_model'
 retrain = 1
-
+file=open("mapping.txt","r")
+label_list=file.readlines()
 
 if os.path.isfile(model_path) and not retrain:
     model = keras.models.load_model(model_path)
@@ -49,10 +50,11 @@ for i in range(num_clusters):
         # plot
         ax4.imshow(emnist_img_i.convert('L'), cmap='gray', vmin=0, vmax=255)
         ax4.set_title('EMNIST picture')
-        print(np.size(emnist_img_i))
+        arr=np.array(emnist_img_i)
+        arr=arr.reshape(1,28,28,1)
         Sol = np.argmax(
-            model.predict(emnist_img_i))
-        print(Sol)
+            model.predict(arr))
+        print(chr(int(label_list[Sol].strip())))
     else:
         binary_clustered_img -= cluster_i * (i + 1)
 # plot

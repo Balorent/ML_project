@@ -1,14 +1,14 @@
 import tensorflow as tf
 
-from emnist import extract_training_samples, extract_test_samples
+import emnist as emn
 
 
 
 # Load the EMNIST dataset
 def create_model():
     #(x_train, y_train), (x_test, y_test) = emnist.load_data(type='balanced')
-    x_train, y_train = extract_training_samples('balanced')
-    x_test, y_test = extract_test_samples('balanced')
+    x_train, y_train = emn.extract_training_samples('balanced')
+    x_test, y_test = emn.extract_test_samples('balanced')
     # Preprocess the data
     x_train = x_train.reshape(x_train.shape[0], 28, 28, 1).astype('float32') / 255
     x_test = x_test.reshape(x_test.shape[0], 28, 28, 1).astype('float32') / 255
@@ -38,3 +38,4 @@ def create_model():
     print('Test accuracy:', test_acc)
 
     return model
+

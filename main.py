@@ -7,20 +7,20 @@ import copy
 import format
 import Model
 from tensorflow import keras
-import os.path
+import os
 
-img_name = 'images/multiple.jpg'
-model_path = 'my_model'
+img_name = 'images/one(2).jpg'
+model_path = 'my_model.h5'
+#model_path=os.path.join(os.getcwd(),'my_model.h5')
 retrain = 1
-file=open("mapping.txt","r")
-label_list=file.readlines()
+file = open("mapping.txt", "r")
+label_list = file.readlines()
 
 if os.path.isfile(model_path) and not retrain:
     model = keras.models.load_model(model_path)
 else:
     model = Model.create_model()
-    #model.save(model_path)
-
+    model.save(model_path)
 
 # The original image
 original_img = Image.open(img_name).convert('L')
@@ -50,10 +50,10 @@ for i in range(num_clusters):
         # plot
         ax4.imshow(emnist_img_i.convert('L'), cmap='gray', vmin=0, vmax=255)
         ax4.set_title('EMNIST picture')
-        arr=np.array(emnist_img_i)
-        arr=arr.reshape(1,28,28,1)
+        arr = np.array(emnist_img_i)
+        arr = arr.reshape(1, 28, 28, 1)
         Sol = np.argmax(
-            model.predict(arr))
+            model.predict(arr.astype("float32")/255))
         print(chr(int(label_list[Sol].strip())))
     else:
         binary_clustered_img -= cluster_i * (i + 1)
@@ -64,6 +64,3 @@ ax2.imshow(np.ma.masked_where(binary_clustered_img == 0, binary_clustered_img), 
 ax2.set_title('Binary clustered picture')
 
 plt.show()
-
-
-

@@ -10,8 +10,7 @@ from tensorflow import keras
 import os
 
 img_name = 'images/one(2).jpg'
-model_path = 'my_model.h5'
-#model_path=os.path.join(os.getcwd(),'my_model.h5')
+model_path = 'D:/Utilisateurs/public/Documents/my_model.h5'
 retrain = 1
 file = open("mapping.txt", "r")
 label_list = file.readlines()
@@ -53,7 +52,7 @@ for i in range(num_clusters):
         arr = np.array(emnist_img_i)
         arr = arr.reshape(1, 28, 28, 1)
         Sol = np.argmax(
-            model.predict(arr.astype("float32")/255))
+            model.predict(arr.astype("float32") / 255))
         print(chr(int(label_list[Sol].strip())))
     else:
         binary_clustered_img -= cluster_i * (i + 1)
